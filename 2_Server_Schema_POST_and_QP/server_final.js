@@ -41,6 +41,36 @@ var groups = [
     }
 ];
 
+var group_schema = {
+    "$schema": "http://json-schema.org/draft-04/schema",
+    "type" : "object",
+    "properties" : {
+        "id" : { "type" : "string" },
+        "name" : { "type" : "string", "minLength":1 },
+        "slug" : { "type" : "string" },
+        "category" : { "type" : "string" },
+        "parentGroup_id" : { "type" : "string" }
+    }
+};
+
+var post_handler = function (req, res, next) {
+    var requested_group = req.body;
+    var return_code, return_value;
+
+    var valid = tv4.validate(requested_group, group_schema);
+    if (valid) {
+        groups.push(requested_group);
+        return_code = 201;
+        return_value = "New group created with id=" + groups.indexOf(requested_group);
+    } else {
+        var err = tv4.error;
+        return_code = 400;
+        return_value = err.message + " for property" + err.dataPath;
+    }
+
+    res.send(return_code, return_value);
+    next();
+};
 
 //Handle requests from the user. 
 //req: contains all the request information
@@ -78,11 +108,19 @@ server.use(restify.CORS());
 //Accept requests for JSON responses
 server.use(restify.acceptParser('application/json'));
 
+//Parse the request body from the user
+server.use(restify.bodyParser());
+
+
 //If incoming connection is for <hostname>/groups/<some id number> then call function respond()
 server.get('/api/v0.1/groups', get_handler);
 server.get('/api/v0.1/groups/:id', get_handler);
+server.post('/api/v0.1/groups', post_handler);
 
 //Start listening for connections
 server.listen(3000, function () {
     console.log('%s listening at %s', server.name, server.url);
 });
+
+
+

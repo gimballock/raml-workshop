@@ -1,0 +1,11 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema",
+    "type" : "object",
+    "properties" : {
+        "id" : { "type" : "int" },
+        "name" : { "type" : "string", "minLength":1 },
+        "slug" : { "type" : "string" },
+        "category" : { "type" : "string" },
+        "parentGroup_id" : { "type" : "int" }
+    }
+}

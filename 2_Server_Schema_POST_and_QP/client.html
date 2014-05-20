@@ -26,7 +26,26 @@
                         );
                     });
                 });
-                
+                $('#post-a-group').click(function() {
+                    var body = {
+                        'name': $('#g-name').val(), 
+                        'category': $('#g-category').val(),
+                        'id': $('#g-id').val(), //parseInt($('#g-id').val()),
+                        'parentGroup_id': $('#g-parent-id').val() //parseInt($('#g-parent-id').val())
+                    };
+                    var response = $.ajax({
+                        type: 'POST',
+                        contentType: 'application/json',
+                        url: endpoint + '/groups',
+                        data: JSON.stringify(body),
+                    })
+                    .done(function(data) {
+                        $('#content').html(data);
+                    })
+                    .fail(function(response) {
+                        $('#content').html(response.text);
+                    });
+                });
             });
         </script>
     </head>
@@ -37,7 +56,18 @@
         Group ID:<input id="group-id" type="int"/>
         <button id="get-a-group">Show Details</button>
 
-
+        <br/><br/>
+        <h2>Create a new Group</h2>
+        Group Name:<input id="g-name" type="string">
+        <br/>
+        Group Category:<input id="g-category" type="string"></input>
+        <br/>
+        Group Id:<input id="g-id" type="integer"></input>
+        <br/>
+        Group Parent Id:<input id="g-parent-id" type="integer"></input>
+        <button id="post-a-group">Add a Group</button>
+        <br/><br/>
+        
         <h1>Info</h1>
         <div id="content">
             Click a button above to get some data from the API.
