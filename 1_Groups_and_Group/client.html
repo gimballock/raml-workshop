@@ -18,7 +18,7 @@
                 });
                 $('#get-a-group').click(function () {
                     var group_id = $('#group-id').val();
-                    $.getJSON(endpoont + '/groups/'+group_id, null, function(groupData) {
+                    $.getJSON(endpoint + '/groups/'+group_id, null, function(groupData) {
                         $('#content').html('<h2>'+groupData.name 
                         + '</h2><p>ID:' + groupData.id 
                         + '</p><p>Category:' + groupData.category +'</p><p>'
