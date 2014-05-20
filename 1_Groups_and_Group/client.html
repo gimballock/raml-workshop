@@ -1,0 +1,48 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+        <script type="text/javascript">
+            $(function() {
+                var endpoint = "http://mocksvc.mulesoft.com/mocks/84cef9b2-ad3b-4ecf-9e14-4141c2aecb4a/api/v0.1";
+                
+                $('#get-groups-button').click(function () {    
+                    $.getJSON(endpoint + '/groups', null, function(groupsData) {
+                        var groupsHtml = '';
+                        for (group_idx in groupsData) {
+                            groupsHtml += groupsData[group_idx].id + ": " + groupsData[group_idx].name + '<br/>';
+                        }
+                        $('#content').html(groupsHtml);
+                    });
+                });
+                $('#get-a-group').click(function () {
+                    var group_id = $('#group-id').val();
+                    $.getJSON(endpoont + '/groups/'+group_id, null, function(groupData) {
+                        $('#content').html('<h2>'+groupData.name 
+                        + '</h2><p>ID:' + groupData.id 
+                        + '</p><p>Category:' + groupData.category +'</p><p>'
+                        + '</p><p>Slug:' + groupData.slug +'</p><p>'
+                        + '</p><p>Parent:' + groupData.parentGroup_id +'</p>'
+                        );
+                    });
+                });
+                
+            });
+        </script>
+    </head>
+
+    <body>
+        <button id="get-groups-button">List Groups</button>
+        <br/><br/>
+        Group ID:<input id="group-id" type="int"/>
+        <button id="get-a-group">Show Details</button>
+
+
+        <h1>Info</h1>
+        <div id="content">
+            Click a button above to get some data from the API.
+        </div>
+    </body>
+
+</html>

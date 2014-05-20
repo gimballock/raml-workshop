@@ -1,0 +1,15 @@
+{
+  "name": "hello-world",
+  "description": "hello world test app",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "mysql": "~2.1.0",
+    "restify": "~2.6.3",
+    "knex": "~0.5.8",
+    "crypto": "0.0.3",
+    "underscore": "~1.6.0",
+    "raml-parser": "~0.8.5",
+    "tv4": "~1.0.16"
+  }
+}

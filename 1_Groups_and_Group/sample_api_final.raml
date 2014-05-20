@@ -1,0 +1,62 @@
+#%RAML 0.8
+title: Workshop Demo API
+version: v0.1
+baseUri: http://localhost/api/{version}
+protocols: [HTTP]
+/groups:
+  displayName: Groups
+  get:
+    description: Show collection of Groups
+    responses:
+      200:
+        description: Success
+        headers:
+          Access-Control-Allow-Origin:
+            example: |
+              *
+        body:
+          application/json:
+            example: | 
+              [ 
+                { 
+                  "id":20,
+                  "name":"CloudCamp", 
+                  "slug":"cloudcamp", 
+                  "category":"topic", 
+                  "parentGroup_id":null 
+                },
+                { 
+                    "id":21, 
+                    "name":"BigDataCamp", 
+                    "slug":"bigdatacamp", 
+                    "category":"topic", 
+                    "parentGroup_id":null 
+                }
+              ]
+  /{gid}:
+    displayName: Group
+    uriParameters:
+      gid:
+        displayName: Group Id
+        type: number
+        minimum: 0
+    get:
+      description: Details of a particular group
+      responses:
+        200:
+          description: Success
+          headers:
+            Access-Control-Allow-Origin:
+              example: |
+                *
+          body:
+            application/json:
+              example: |  
+                { 
+                  "id":20,
+                  "name":"CloudCamp", 
+                  "slug":"cloudcamp", 
+                  "category":"topic", 
+                  "parentGroup_id":null 
+                }
+    
