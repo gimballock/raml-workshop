@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+        <script type="text/javascript" src="client.js"></script>
+    </head>
+
+    <body>
+        <button id="get-events-button">List Events</button>
+        <br/><br/>
+        Event ID:<input id="event-id" type="int"/>
+        <button id="get-an-event">Show Details</button>
+
+        <br/>
+        <form action="/" id="post-an-event">
+            <p>
+                <LABEL for="new-event-id">Id: </LABEL><input id="new-event-id" type="integer"><BR>
+                <LABEL for="event-name">Name: </LABEL><input id="event-name" type="text"><BR>
+                <LABEL for="event-description">Description: </LABEL><input id="event-description" type="text"><BR>
+                <LABEL for="event-location">Location: </LABEL><input id="event-location" type="text"><BR>
+                <LABEL for="event-start">Time: </LABEL>
+                    <input id="event-start" type="text"><input id="event-end" type="text"><BR>
+
+                <INPUT type="submit" value="Send"> <INPUT type="reset">
+            </p>
+         </form>
+        
+        <h1>Details</h1>
+        <div id="content">
+            Click a button above to get some data from the API.
+        </div>
+    </body>
+
+</html>

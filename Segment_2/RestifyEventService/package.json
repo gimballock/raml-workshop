@@ -6,6 +6,7 @@
   "dependencies": {
     "underscore": "~1.6.0",
     "raml-parser": "~0.8.5",
-    "tv4": "~1.0.16"
+    "tv4": "~1.0.16",
+    "restify": "~2.8.1"
   }
 }

@@ -1,0 +1,108 @@
+#%RAML 0.8
+title: Conference API
+baseUri: http://localhost:3000/api/{version}
+version: v0.1
+mediaType: application/json
+/events:
+  displayName: List of events
+  description: This resource represents public events which have a name, description, location and start and ending time.  You can query the list of all events, post new events, and request details of a particular event.
+  get:
+    description: Show collection of Events
+    responses:
+      200:
+        description: Success
+        headers:
+          Access-Control-Allow-Origin:
+            default: |
+              *
+        body:
+          application/json:
+            example: |
+              [ 
+                { 
+                  "id":0,
+                  "name":"APICon SF", 
+                  "description":"APIcon is a 3-day interactive conference for app developers, existing public API providers, and those currently developing an API strategy.\nFrom May 27-29, 450+ stakeholders in the API economy will gather at the Hilton San Francisco Union Square to learn, create, ideate, and debate while advancing the overall interests of the API economy and all of its constituents. - See more at: http://www.apiconsf.com/#sthash.prwopBLX.dpuf", 
+                  "location":"750 Kearny St, San Francisco, CA 94108", 
+                  "starts_at":"2014-05-27",
+                  "ends_at":"2014-05-29"
+                },
+                { 
+                  "id":1,
+                  "name":"APICon SF 2015", 
+                  "description":"APIcon is a 5-day interactive conference for app developers, existing public API providers, and those currently developing an API strategy.\nFrom May 27-29, 1000+ stakeholders in the API economy will gather at the Hilton San Francisco Union Square to learn, create, ideate, and debate while advancing the overall interests of the API economy and all of its constituents. - See more at: http://www.apiconsf2015.com/not-a-real-url", 
+                  "location":"750 Kearny St, San Francisco, CA 94108", 
+                  "starts_at":"2015-05-27",
+                  "ends_at":"2015-05-29"
+                }
+              ]
+          application/xml:
+            example: |
+              <?xml version="1.0" encoding="UTF-8"?>
+              <event>
+                 <list>
+                    <description>APIcon is a 3-day interactive conference for app developers, existing public API providers, and those currently developing an API strategy. From May 27-29, 450+ stakeholders in the API economy will gather at the Hilton San Francisco Union Square to learn, create, ideate, and debate while advancing the overall interests of the API economy and all of its constituents. - See more at: http://www.apiconsf.com/#sthash.prwopBLX.dpuf</description>
+                    <ends_at>2014-05-29</ends_at>
+                    <id>0</id>
+                    <location>750 Kearny St, San Francisco, CA 94108</location>
+                    <name>APICon SF</name>
+                    <starts_at>2014-05-27</starts_at>
+                 </list>
+                 <list>
+                    <description>APIcon is a 5-day interactive conference for app developers, existing public API providers, and those currently developing an API strategy. From May 27-29, 1000+ stakeholders in the API economy will gather at the Hilton San Francisco Union Square to learn, create, ideate, and debate while advancing the overall interests of the API economy and all of its constituents. - See more at: http://www.apiconsf2015.com/not-a-real-url</description>
+                    <ends_at>2015-05-29</ends_at>
+                    <id>1</id>
+                    <location>750 Kearny St, San Francisco, CA 94108</location>
+                    <name>APICon SF 2015</name>
+                    <starts_at>2015-05-27</starts_at>
+                 </list>
+              </event>
+          
+  /{eid}:
+    displayName: Individual event
+    uriParameters:
+      eid:
+        displayName: Event Id
+        type: number
+        minimum: 0
+    get:
+      description: Details of a particular event
+      responses:
+        200:
+          description: Success
+          headers:
+            Access-Control-Allow-Origin:
+              default: |
+                *
+          body:
+            application/json:
+              example: |
+                { 
+                  "id":0,
+                  "name":"APICon SF", 
+                  "description":"APIcon is a 3-day interactive conference for app developers, existing public API providers, and those currently developing an API strategy.\nFrom May 27-29, 450+ stakeholders in the API economy will gather at the Hilton San Francisco Union Square to learn, create, ideate, and debate while advancing the overall interests of the API economy and all of its constituents. - See more at: http://www.apiconsf.com/#sthash.prwopBLX.dpuf", 
+                  "location":"750 Kearny St, San Francisco, CA 94108", 
+                  "starts_at":"2014-05-27",
+                  "ends_at":"2014-05-29"
+                }
+            application/xml:
+              example: |
+                <?xml version="1.0" encoding="UTF-8"?>
+                <event>
+                   <description>APIcon is a 3-day interactive conference for app developers, existing public API providers, and those currently developing an API strategy. From May 27-29, 450+ stakeholders in the API economy will gather at the Hilton San Francisco Union Square to learn, create, ideate, and debate while advancing the overall interests of the API economy and all of its constituents. - See more at: http://www.apiconsf.com/#sthash.prwopBLX.dpuf</description>
+                   <ends_at>2014-05-29</ends_at>
+                   <id>2</id>
+                   <location>750 Kearny St, San Francisco, CA 94108</location>
+                   <name>APICon SF</name>
+                   <starts_at>2014-05-27</starts_at>
+                </event>
+        404:
+          description: Group not found.
+          headers:
+            Access-Control-Allow-Origin:
+              default: |
+                *
+          body:
+            application/json:
+              example: |
+                { "error" : "resource not found" }
