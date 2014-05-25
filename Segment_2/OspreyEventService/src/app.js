@@ -2,7 +2,6 @@ var express = require('express');
 var path = require('path');
 var osprey = require('osprey');
 var _ = require('underscore');
-var tv4 = require('tv4');
 
 var events = [ 
     { 
@@ -55,7 +54,13 @@ app.set('port', process.env.PORT || 3000);
 
 api = osprey.create('/api/v0.1', app, {
   ramlFile: path.join(__dirname, '/assets/raml/api.raml'),
-  logLevel: 'debug'  //  logLevel: off->No logs | info->Show Osprey modules initializations | debug->Show all
+  logLevel: 'debug',  //  logLevel: off->No logs | info->Show Osprey modules initializations | debug->Show all
+  exceptionHandler: {
+    InvalidBodyError: function (err, req, res) {
+      // Overwriting the default implementation
+      res.send (400, "Parse Error: Invalid request body" );
+    }
+  }
 });
 
 if (!module.parent) {
@@ -66,7 +71,7 @@ if (!module.parent) {
 
 var get_handler = function(req, res) {
     var return_code = 404;
-    var return_value = 'event could not be found';
+    var return_value = 'Event could not be found';
 
     if (!_.isUndefined(req.params.eid)) {
         var id = parseInt(req.params.eid, 10);
@@ -96,20 +101,10 @@ var post_handler = function (req, res) {
     var requested_event = req.body;
     var return_code, return_value;
 
-    // Currently no way (to my knowledge) to access osprey's validaton service
-    // Maybe the reader of this comment will provide that patch?
-
-    var valid = tv4.validate(requested_event, event_schema);
-    if (valid) {
-        events.push(requested_event);
-        return_code = 201;
-        return_value = "New event created with id=" + events.indexOf(requested_event);
-    } else {
-        var err = tv4.error;
-        return_code = 400;
-        return_value = err.message + " for property" + err.dataPath;
-    }
-    res.send(return_code, return_value);
+    events.push(requested_event);
+    return_code = 201;
+    return_value = "New event created with id=" + events.indexOf(requested_event);
+    res.send(return_code, { message: return_value } );
 };
 
 //Adding business logic to a valid RAML Resource

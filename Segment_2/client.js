@@ -23,13 +23,15 @@ $(function() {
             + '<b>Description: </b>' + eventData.description;
             
             $('#content').html(details);
+        }).fail(function( xhr ) {
+            $('#content').html(xhr.responseJSON ? xhr.responseJSON : xhr.responseText);
         });
     });
     $('#post-an-event').submit(function(event) {
         event.preventDefault();
         
         var body = {
-            'id': parseInt($('#new-event-id').val(), 10) || 0,
+            'id': parseInt($('#new-event-id').val(), 10),
             'name': $('#event-name').val(), 
             'description': $('#event-description').val(),
             'location': $('#event-location').val(),
@@ -49,7 +51,7 @@ $(function() {
             url: endpoint + '/events',
             data: JSON.stringify(body),
             error: function(xhr, error){
-                $('#content').html(error);
+                $('#content').html(xhr.responseJSON ? xhr.responseJSON : xhr.responseText);
             }
         }).done(function(data) {
             $('#content').html(data.message);

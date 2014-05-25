@@ -38,10 +38,10 @@ var event_schema = {
 
 var get_handler = function(req, res) {
     var return_code = 404;
-    var return_value = 'event could not be found';
+    var return_value = 'Event could not be found';
 
     if (!_.isUndefined(req.params.eid)) {
-        var id = parseInt(req.params.eid, 10) || 0;
+        var id = parseInt(req.params.eid, 10);
         var event = _.find(events, function (event) {
             if(event.id === id)
                 return true;
@@ -75,13 +75,13 @@ var post_handler = function (req, res) {
     if (valid) {
         events.push(requested_event);
         return_code = 201;
-        return_value = "New event created with id=" + events.indexOf(requested_event);
+        return_value = { "message" : "New event created with id=" + events.indexOf(requested_event) };
     } else {
         var err = tv4.error;
         return_code = 400;
         return_value = err.message + " for property" + err.dataPath;
     }
-    res.send(return_code, return_value);
+    res.send(return_code, return_value );
 };
 
 //Server object we will attach all our REST calls to
