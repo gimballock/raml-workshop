@@ -103,7 +103,7 @@ var post_handler = function (req, res) {
 
     events.push(requested_event);
     return_code = 201;
-    return_value = "New event created with id=" + events.indexOf(requested_event);
+    return_value = "New event created with id=" + requested_event.id;
     res.send(return_code, { message: return_value } );
 };
 

@@ -75,7 +75,7 @@ var post_handler = function (req, res) {
     if (valid) {
         events.push(requested_event);
         return_code = 201;
-        return_value = { "message" : "New event created with id=" + events.indexOf(requested_event) };
+        return_value = { "message" : "New event created with id=" + requested_event.id };
     } else {
         var err = tv4.error;
         return_code = 400;
