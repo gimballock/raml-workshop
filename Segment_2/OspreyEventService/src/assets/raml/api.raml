@@ -1,7 +1,6 @@
 #%RAML 0.8
 title: Conference API
-#baseUri: http://localhost:3000/api/{version}
-baseUri: http://mocksvc.mulesoft.com/mocks/f743ee04-f974-4a0d-9568-9efa72a4f2b0/api/{version}
+baseUri: http://localhost:3000/api/{version}
 version: v0.1
 mediaType: application/json
 /events:
@@ -93,8 +92,8 @@ mediaType: application/json
     description: Show collection of Events
     queryParameters:
       sort_order:
-        default: "desc"
-        example: "asc"
+        default: "asc"
+        example: "desc"
         description: Determines (asc)ending or (desc)ending order of Groups
     responses:
       200:
@@ -144,8 +143,7 @@ mediaType: application/json
                     <name>APICon SF 2015</name>
                     <starts_at>2015-05-27</starts_at>
                  </list>
-              </event>
-          
+              </event>       
   /{eid}:
     displayName: Individual event
     uriParameters:
@@ -209,67 +207,59 @@ mediaType: application/json
               application/json:
                 example: | 
                   [ 
-                    { 
-                      "id":1,
-                      "name":"From Idea to API in Half a Day",
-                      "organizers" : [ "Dave Nielsen, Platform D, Inc.", "Gopi Soundarrajan, Mulesoft"],
-                      "location" : "Union Square Room",
-                      "starts_at":"03:50",
-                      "ends_at":"04:45"
+                    {
+                      "id" : 351,
+                      "name" : "From Idea to API in Half a Day",
+                      "description" : "Want to excel at agile API design? In this 2 hour workshop you will learn how to collaboratively design an API from scratch for great user experience. You will learn how to iterate with your users, using their feedback to help you get your API right from the start. But we won't stop there, we will show you the whole life cycle of how to build, deploy and manage your API with RAML. All within 2 hours. Don't miss this opportunity to make your API shine!",
+                      "starts_at" : null,
+                      "ends_at" : null,
+                      "organizers" : "Dave Nielsen, Gopi Soundarrajan, Eric Price"
                     },
-                    { 
-                      "id":2,
-                      "starts_at":"TBD",
-                      "ends_at":"TBD",
-                      "name":"3scale - Tips To Rock At Hackathons",
-                      "organizers" : [ "Nicolas Grenié, 3scale", "Vanessa Ramos, 3scale"],
-                      "location" : "Union Square Room"
+                    {
+                      "id" : 361,
+                      "name" : "API Antipatterns: How To Identify Them. How To Avoid Them.",
+                      "description" : "APIs have become a part of the product ecosystem - and help the businesses by extending their developer base, and offering seamless i ntegration with other services or products. Sometimes, the APIs themselves are the product. However, with so many APIs around, patterns emerge. Patterns are repeatable, reusable solutions to commonly occurring problems. Where there are patterns, there are also antipatterns. While APIs are not a new paradigm - there are no set standards or specifications formed by a committees or governing bodies for APIs. On top of this, the APIs are often built at various stages of the product, and have a good chance of being disjoint as more are added. In this talk Netflix engineers will discuss various antipatterns that creep into the API design and implementation, and how to identify and avoid them. They will also share their experiences with building APIs. While the antipatterns do not pose as big a functional challenge, they can and do impact integration efforts, scalability and performance among other things. After this session, you should be able to get familiar with the best practices around solving the most common patterns, and make your engineers and API consumers happy!",
+                      "starts_at" : null,
+                      "ends_at" : null,
+                      "organizers" : "Manish Pandit"
                     },
-                    { 
-                      "id":3,
-                      "starts_at":"03:50",
-                      "ends_at":"04:45",
-                      "name":"Nexmo - Solve Real-World Problems with SMS",
-                      "organizers" : [ "Tim Lytle, Nexmo"],
-                      "location" : "Union Square Room"
+                    {
+                      "id" : 371,
+                      "name" : "Designing APIs With Apache Thrift",
+                      "description" : "The Apache Thrift IDL is at the heart of the Apache Thrift framework and one of its most powerful features is its ability to evolve incrementally without impairing compatibility with existing systems. The ability to take small incremental risks at the API level plays squarely into the business processes centered around continuous integration and continuous delivery. In this session attendees will gain experience with the mechanics of Apache Thrift and learn how to build RPC clients and servers for cross language/platform communications. The session also explores some of the more challenging general problems associated with interface evolution and distributed application development. ",
+                      "starts_at" : null,
+                      "ends_at" : null,
+                      "organizers" : "Randy Abernethy "
                     }
                   ]
               application/xml:
                 example: |
                   <?xml version="1.0" encoding="UTF-8"?>
                   <sessions>
-                     <list>
-                        <ends_at>04:45</ends_at>
-                        <id>1</id>
-                        <location>Union Square Room</location>
-                        <name>From Idea to API in Half a Day</name>
-                        <organizers>
-                           <list>Dave Nielsen, Platform D, Inc.</list>
-                           <list>Gopi Soundarrajan, Mulesoft</list>
-                        </organizers>
-                        <starts_at>03:50</starts_at>
-                     </list>
-                     <list>
-                        <ends_at>TBD</ends_at>
-                        <id>2</id>
-                        <location>Union Square Room</location>
-                        <name>3scale - Tips To Rock At Hackathons</name>
-                        <organizers>
-                           <list>Nicolas Grenié, 3scale</list>
-                           <list>Vanessa Ramos, 3scale</list>
-                        </organizers>
-                        <starts_at>TBD</starts_at>
-                     </list>
-                     <list>
-                        <ends_at>04:45</ends_at>
-                        <id>3</id>
-                        <location>Union Square Room</location>
-                        <name>Nexmo - Solve Real-World Problems with SMS</name>
-                        <organizers>
-                           <list>Tim Lytle, Nexmo</list>
-                        </organizers>
-                        <starts_at>03:50</starts_at>
-                     </list>
+                    <session>
+                      <description>Want to excel at agile API design? In this 2 hour workshop you will learn how to collaboratively design an API from scratch for great user experience. You will learn how to iterate with your users, using their feedback to help you get your API right from the start. But we won't stop there, we will show you the whole life cycle of how to build, deploy and manage your API with RAML. All within 2 hours. Don't miss this opportunity to make your API shine!</description>
+                      <ends_at null="true" />
+                      <id>351</id>
+                      <name>From Idea to API in Half a Day</name>
+                      <organizers>Dave Nielsen, Gopi Soundarrajan, Eric Price</organizers>
+                      <starts_at null="true" />
+                    </session>
+                    <session>
+                      <description>APIs have become a part of the product ecosystem - and help the businesses by extending their developer base, and offering seamless i ntegration with other services or products. Sometimes, the APIs themselves are the product. However, with so many APIs around, patterns emerge. Patterns are repeatable, reusable solutions to commonly occurring problems. Where there are patterns, there are also antipatterns. While APIs are not a new paradigm - there are no set standards or specifications formed by a committees or governing bodies for APIs. On top of this, the APIs are often built at various stages of the product, and have a good chance of being disjoint as more are added. In this talk Netflix engineers will discuss various antipatterns that creep into the API design and implementation, and how to identify and avoid them. They will also share their experiences with building APIs. While the antipatterns do not pose as big a functional challenge, they can and do impact integration efforts, scalability and performance among other things. After this session, you should be able to get familiar with the best practices around solving the most common patterns, and make your engineers and API consumers happy!</description>
+                      <ends_at null="true" />
+                      <id>361</id>
+                      <name>API Antipatterns: How To Identify Them. How To Avoid Them.</name>
+                      <organizers>Manish Pandit</organizers>
+                      <starts_at null="true" />
+                    </session>
+                    <session>
+                      <description>The Apache Thrift IDL is at the heart of the Apache Thrift framework and one of its most powerful features is its ability to evolve incrementally without impairing compatibility with existing systems. The ability to take small incremental risks at the API level plays squarely into the business processes centered around continuous integration and continuous delivery. In this session attendees will gain experience with the mechanics of Apache Thrift and learn how to build RPC clients and servers for cross language/platform communications. The session also explores some of the more challenging general problems associated with interface evolution and distributed application development.</description>
+                      <ends_at null="true" />
+                      <id>371</id>
+                      <name>Designing APIs With Apache Thrift</name>
+                      <organizers>Randy Abernethy</organizers>
+                      <starts_at null="true" />
+                    </session>
                   </sessions>
       /{sid}:
         displayName: Session details
@@ -290,25 +280,22 @@ mediaType: application/json
               body:
                 application/json:
                   example: | 
-                    { 
-                      "id":1,
-                      "name":"From Idea to API in Half a Day",
-                      "organizers" : [ "Dave Nielsen, Platform D, Inc.", "Gopi Soundarrajan, Mulesoft"],
-                      "location" : "Union Square Room",
-                      "starts_at":"03:50",
-                      "ends_at":"04:45"
+                    {
+                      "id" : 351,
+                      "name" : "From Idea to API in Half a Day",
+                      "description" : "Want to excel at agile API design? In this 2 hour workshop you will learn how to collaboratively design an API from scratch for great user experience. You will learn how to iterate with your users, using their feedback to help you get your API right from the start. But we won't stop there, we will show you the whole life cycle of how to build, deploy and manage your API with RAML. All within 2 hours. Don't miss this opportunity to make your API shine!",
+                      "starts_at" : null,
+                      "ends_at" : null,
+                      "organizers" : "Dave Nielsen, Gopi Soundarrajan, Eric Price"
                     }
                 application/xml:
                   example:
                     <?xml version="1.0" encoding="UTF-8"?>
                     <session>
-                       <ends_at>04:45</ends_at>
-                       <id>1</id>
-                       <location>Union Square Room</location>
-                       <name>From Idea to API in Half a Day</name>
-                       <organizers>
-                          <list>Dave Nielsen, Platform D, Inc.</list>
-                          <list>Gopi Soundarrajan, Mulesoft</list>
-                       </organizers>
-                       <starts_at>03:50</starts_at>
+                      <description>Want to excel at agile API design? In this 2 hour workshop you will learn how to collaboratively design an API from scratch for great user experience. You will learn how to iterate with your users, using their feedback to help you get your API right from the start. But we won't stop there, we will show you the whole life cycle of how to build, deploy and manage your API with RAML. All within 2 hours. Don't miss this opportunity to make your API shine!</description>
+                      <ends_at null="true" />
+                      <id>351</id>
+                      <name>From Idea to API in Half a Day</name>
+                      <organizers>Dave Nielsen, Gopi Soundarrajan, Eric Price</organizers>
+                      <starts_at null="true" />
                     </session>
