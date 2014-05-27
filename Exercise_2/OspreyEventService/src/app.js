@@ -12,6 +12,9 @@ var allowCrossDomain = function(req, res, next) {
   next();
 };
 
+//serve up our webpage statically
+app.use(express.static(__dirname + '/assets/public'));
+
 app.use(express.bodyParser());
 app.use(express.methodOverride());
 app.use(express.compress());
@@ -50,7 +53,7 @@ var load_json_file = function (file_name) {
     console.log('JSON file load error: ' + err);
     return {};
   }
-}
+};
 
 var events = load_json_file('events');
 var event_schema = load_json_file('event_schema');
