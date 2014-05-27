@@ -10,19 +10,17 @@ $(function() {
                 eventsHtml += '<tr><td>' + eventsData[event_idx].id + '</td><td>' + eventsData[event_idx].name + '</td></tr>';
             }
 
-            var listTable = '<table><thead><tr><th align="left">Id</th><th align="left">Name</th></tr></thead><tbody>' + eventsHtml + '</tbody></table>';
+            var listTable = '<table><thead><tr><th>Id</th><th>Name</th></tr></thead><tbody>' + eventsHtml + '</tbody></table>';
             $('#content').html(listTable);
         });
     });
     $('#get-an-event').click(function () {
         var event_id = $('#event-id').val();
         $.getJSON(endpoint + '/events/'+event_id, null, function(eventData) {
-            var details = '<p>'
-            + '<b>Name: </b>' + eventData.name + '<br>'
-            + '<b>Location: </b>' + eventData.location + '<br>'
-            + '<b>Time: </b>' + eventData.starts_at + ' - ' + eventData.ends_at + '<br>'
-            + '<b>Description: </b>' + eventData.description 
-            + '</p>';
+            var details = '<table><tr><td>Name</td><td>' + eventData.name + '</td></tr>'
+            + '<tr><td>Location</td><td>' + eventData.location + '</td></tr>'
+            + '<tr><td>Time</td><td>' + eventData.starts_at + ' - ' + eventData.ends_at + '</td></tr>'
+            + '<tr><td>Description</td><td>' + eventData.description + '</td></tr></table>';
             
             $('#content').html(details);
         });
