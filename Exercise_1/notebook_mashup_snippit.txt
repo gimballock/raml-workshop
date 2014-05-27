@@ -1,34 +1,5 @@
 ```javascript
-GroupDemo.groups.get()
-```
-
-```javascript
-API.createClient('twitterRestApi', 'http://www.apihub.com/twitter/api/twitter-rest-api/twitter-rest-api.raml');
-```
-
-```javascript
-API.authenticate(twitterRestApi);
-```
-
-```javascript
-twitterRestApi.search.tweets.json.get({"q":"CloudCamp"});
-```
-
-```javascript
-$1.body.map(function (group) {
-  return twitterRestApi.search.tweets.json.get({"q":group.name, "include_entities": "false"});
-});
-
-```
-
-```javascript
-$5.map(function(tweetSearch) {
-  var info = { 
-    name : tweetSearch.body.search_metadata.query,
-    tweets : tweetSearch.body.statuses.map(function(tweet) {return "\t" + tweet.user.screen_name + ": " + tweet.text}).join("\n")
-  };
-  return info.name + ":\n" + info.tweets;
-});
+<API Name>.events.get();
 ```
 
 ```javascript
@@ -41,17 +12,16 @@ API.authenticate(githubApiV3);
 
 ```javascript
 githubApiV3.gists.post({
-  "description": "Latest Group Tweets",
+  "description": "Latest Event Names",
   "public": false,
   "files": {
-    "group_tweets.txt": {
-      "content": $6.join('\n\n')
+    "eventNames.txt": {
+      "content": $1.body.map(function(event){ return event.name; }).join('\n')
     }
   }
 });
 ```
 
 ```javascript
-open($9.body.html_url);
+open($4.body.html_url);
 ```
-
