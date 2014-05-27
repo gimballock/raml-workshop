@@ -30,6 +30,7 @@ button:hover, input[type="submit"]:hover, input[type="reset"]:visited  {
 }
 input[type="text"], input[type="integer"] {
     width: 90%;
+    padding: 10px;
 }
 table {
     border: 1px solid #ccc;
@@ -40,7 +41,7 @@ table {
     background: white;
     text-align: left;
     margin: 0 auto;
-    max-width:90%;
+    width:90%;
 }
 th {
     padding: 10px;
