@@ -1,40 +1,21 @@
 var restify = require('restify'),
+    path = require('path'),
     _ = require('underscore'),
     tv4 = require('tv4');
 
-//Example data, this should really come from a database.
-var events = [ 
-    { 
-      "id":0,
-      "name":"APICon SF", 
-      "description":"APIcon is a 3-day interactive conference for app developers, existing public API providers, and those currently developing an API strategy.\nFrom May 27-29, 450+ stakeholders in the API economy will gather at the Hilton San Francisco Union Square to learn, create, ideate, and debate while advancing the overall interests of the API economy and all of its constituents. - See more at: http://www.apiconsf.com/#sthash.prwopBLX.dpuf", 
-      "location":"750 Kearny St, San Francisco, CA 94108", 
-      "starts_at":"2014-05-27",
-      "ends_at":"2014-05-29"
-    },
-    { 
-      "id":1,
-      "name":"APICon SF 2015", 
-      "description":"APIcon is a 5-day interactive conference for app developers, existing public API providers, and those currently developing an API strategy.\nFrom May 27-29, 1000+ stakeholders in the API economy will gather at the Hilton San Francisco Union Square to learn, create, ideate, and debate while advancing the overall interests of the API economy and all of its constituents. - See more at: http://www.apiconsf2015.com/not-a-real-url", 
-      "location":"750 Kearny St, San Francisco, CA 94108", 
-      "starts_at":"2015-05-27",
-      "ends_at":"2015-05-29"
-    }
-];
+//Load JSON resources
+//Assumes .json extension and located within assets dir
+var load_json_file = function (file_name) {
+  try {
+    return require( path.join(__dirname, '/assets/json/'+file_name+'.json') );
+  } catch(err) {
+    console.log('JSON file load error: ' + err);
+    return {};
+  }
+}
 
-var event_schema = {
-    "$schema": "http://json-schema.org/draft-04/schema",
-    "type" : "object",
-    "properties" : {
-        "id" : { "type" : "number" },
-        "name" : { "type" : "string", "minLength":1 },
-        "description" : { "type" : "string" },
-        "location" : { "type" : "string" },
-        "starts_at" : { "type" : "string" },
-        "ends_at" : { "type" : "string" },
-    }
-};
-
+var events = load_json_file('events');
+var event_schema = load_json_file('event_schema');
 
 var get_handler = function(req, res) {
     var return_code = 404;
@@ -75,7 +56,7 @@ var post_handler = function (req, res) {
     if (valid) {
         events.push(requested_event);
         return_code = 201;
-        return_value = { "message" : "New event created with id=" + events.indexOf(requested_event) };
+        return_value = { "message" : "New event created with id=" + requested_event.id };
     } else {
         var err = tv4.error;
         return_code = 400;

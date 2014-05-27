@@ -1,6 +1,6 @@
 $(function() {
-    //var endpoint = "http://localhost:3000/api/v0.1";
-    var endpoint = "http://mocksvc.mulesoft.com/mocks/<<mock hash>>/api/v0.1";
+    var endpoint = "http://localhost:3000/api/v0.1";
+    //var endpoint = "http://mocksvc.mulesoft.com/mocks/<<mock hash>>/api/v0.1";
     
     $('#get-events-button').click(function () {    
         $.getJSON(endpoint + '/events', null, function(eventsData) {
